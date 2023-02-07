@@ -1,4 +1,4 @@
-package com.uniovi.sdi.sdi2223404labjee;
+package com.uniovi.sdi;
 
 import java.io.*;
 
