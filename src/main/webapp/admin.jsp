@@ -28,10 +28,6 @@
     <c:redirect url="/index.jsp"/>
 </c:if>
 
-<!-- Contenido -->
-<div class="container" id="contenedor-principal">
-    <h2>Administrar</h2>
-</div>
 <div class="container" id="main-container">
     <h2>Agregar producto a la tienda</h2>
     <form class="form-horizontal" method="post" action="admin.jsp">

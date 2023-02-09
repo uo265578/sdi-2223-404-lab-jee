@@ -1,18 +1,17 @@
 package com.uniovi.sdi;
 
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
-
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 @WebServlet(name = "ServletShoppingCart", value = "/AddToShoppingCart")
-
 public class ServletShoppingCart extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
+            ServletException, IOException {
         HttpSession session = request.getSession();
         HashMap<String, Integer> cart =
                 (HashMap<String, Integer>) request.getSession().getAttribute("cart");
@@ -25,11 +24,13 @@ public class ServletShoppingCart extends HttpServlet {
         if (product != null) {
             addToShoppingCart(cart, product);
         }
+        // Retornar la vista con parámetro "selectedItems"
         request.setAttribute("selectedItems", cart);
         getServletContext().getRequestDispatcher("/cart.jsp").forward(request, response);
     }
 
-    private void addToShoppingCart(Map<String, Integer>cart, String productKey) {
+
+        private void addToShoppingCart(Map<String, Integer> cart, String productKey) {
         if(cart.get(productKey)==null)
             cart.put(productKey, Integer.valueOf(1));
         else{

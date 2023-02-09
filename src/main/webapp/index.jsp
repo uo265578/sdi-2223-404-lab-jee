@@ -1,6 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="com.uniovi.sdi.* , java.util.List"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8"%>
 <html lang="en">
 <head>
     <title>Servlets</title>
@@ -27,6 +27,9 @@
             </li>
             <li class="nav-item ">
                 <a class="nav-link" href="admin.jsp">Administrar productos<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="products">Productos<span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <div class="nav navbar-right">

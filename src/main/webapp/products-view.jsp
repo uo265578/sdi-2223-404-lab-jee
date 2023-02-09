@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 <head>
-  <title>Vista carrito</title>
+  <title>Vista productos</title>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="stylesheet"
@@ -32,13 +32,15 @@
 </nav>
 <!-- Contenido -->
 <div class="container" id="main-container">
-  <h2>Vista Carrito</h2>
+  <h2>Lista de Productos</h2>
   <ul>
-    <c:forEach var="item" items="${selectedItems}">
-      <tr>
-        <li>${item.key} - ${item.value} </li>
-      </tr>
-    </c:forEach>
+    <c:forEach var="item" items="${storeProducts}">
+    <tr>
+      <li>${item.name}</li>
+      <img src="<c:out value="${item.image}"/>"/>
+    </tr>
+
+  </c:forEach>
   </ul>
   <a href="index.jsp">Volver</a>
 </div>
