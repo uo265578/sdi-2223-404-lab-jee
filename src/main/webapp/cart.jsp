@@ -1,5 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" import="com.uniovi.sdi.* , java.util.List"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8"%>
 <html lang="en">
 <head>
   <title>Vista carrito</title>
@@ -34,9 +35,14 @@
 <div class="container" id="main-container">
   <h2>Vista Carrito</h2>
   <ul>
+    <jsp:useBean id="productsService" class="com.uniovi.sdi.ProductsService"/>
     <c:forEach var="item" items="${selectedItems}">
       <tr>
         <li>${item.key} - ${item.value} </li>
+        <a href="RemoveToShoppingCart?item=<c:out value="${item.key}"/>"
+           class="btn btn-default">
+           Eliminar
+        </a>
       </tr>
     </c:forEach>
   </ul>

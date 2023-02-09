@@ -7,22 +7,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
-@WebServlet(name = "ServletShoppingCart", value = "/AddToShoppingCart")
-public class ServletShoppingCart extends HttpServlet {
+@WebServlet(name = "ServletRemoveCart", value = "/RemoveToShoppingCart")
+public class ServletRemoveCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
+
         HttpSession session = request.getSession();
         HashMap<String, Integer> cart =
                 (HashMap<String, Integer>) request.getSession().getAttribute("cart");
-        // No hay carrito, creamos uno y lo insertamos en sesión
-        if (cart == null) {
-            cart = new HashMap<String, Integer>();
-            request.getSession().setAttribute("cart", cart);
-        }
-        String product = request.getParameter("product");
-        if (product != null) {
-            addToShoppingCart(cart, product);
+        String item = request.getParameter("item");
+        if (item != null) {
+            removeToShoppingCart(cart, item);
         }
         // Retornar la vista con parámetro "selectedItems"
         request.setAttribute("selectedItems", cart);
@@ -30,15 +26,16 @@ public class ServletShoppingCart extends HttpServlet {
     }
 
 
-    private void addToShoppingCart(Map<String, Integer> cart, String productKey) {
-        if(cart.get(productKey)==null)
-            cart.put(productKey, Integer.valueOf(1));
-        else{
-            int productCount = (Integer)cart.get(productKey).intValue();
-            cart.put(productKey, Integer.valueOf(productCount+1));
+    private void removeToShoppingCart(Map<String, Integer> cart, String productKey) {
+        int productCount = (Integer)cart.get(productKey).intValue();
+        if(productCount<=1) {
+            cart.remove(productKey);
+        }
+        else
+        {
+            cart.put(productKey, Integer.valueOf(productCount-1));
         }
     }
-
 
     private String shoppingCartToHtml(Map<String, Integer> cart) {
         String shoppingCartToHtml = "";
