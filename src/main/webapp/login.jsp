@@ -17,7 +17,12 @@
     if(name!=null&&name.equals("admin")&&password!=null&&name.equals("admin")) {
         request.getSession().setAttribute("user","admin");
         response.sendRedirect("admin.jsp");
-    } else{
+    }
+    else if(name!=null && password!=null) {
+        request.getSession().setAttribute("user",name);
+        response.sendRedirect("blog.jsp");
+    }
+    else{
         request.getSession().setAttribute("user",null);
     }
 

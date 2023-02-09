@@ -26,4 +26,27 @@ public class ProductsService {
             db.close();
         }
     }
+
+    public List<Blog> getComments() {
+        List<Blog> comments = new LinkedList<Blog>();
+        ObjectContainer db = null;
+        try {
+            db = Db4oEmbedded.openFile("bdBlogs");
+            List<Blog> response = db.queryByExample(Blog.class);
+            // NO RETORNAR LA MISMA LISTA DE LA RESPUESTA
+            comments.addAll(response);
+        } finally {
+            db.close();
+        }
+        return comments;
+    }
+    public void setNewComment(Blog newBlog) {
+        ObjectContainer db = null;
+        try {
+            db = Db4oEmbedded.openFile("bdBlogs");
+            db.store(newBlog);
+        } finally {
+            db.close();
+        }
+    }
 }

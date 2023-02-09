@@ -31,6 +31,9 @@
             <li class="nav-item ">
                 <a class="nav-link" href="products">Productos<span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="blog.jsp">Blog<span class="sr-only">(current)</span></a>
+            </li>
         </ul>
         <div class="nav navbar-right">
             <jsp:getProperty name="counter" property="total"/> Visitas
@@ -52,6 +55,16 @@
                 </a>
             </div>
         </div>
+        </c:forEach>
+    </div>
+
+    <h2>Comentarios</h2>
+    <div class="row ">
+        <c:forEach var="blog" begin="0" items="${productsService.comments}">
+                <div>
+                    <div><c:out value="${blog.name}"/></div>
+                    <div><c:out value="${blog.comentario}"/></div>
+                </div>
         </c:forEach>
     </div>
 </div>
